@@ -6,7 +6,7 @@ import bean.Vehicle;
 
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Model;
-import java.util.List;
+import java.util.*;
 
 
 
@@ -16,9 +16,14 @@ public class MainController extends Controller{
         int current_time = 0;
         List<Vehicle> vehicles = Vehicle.dao.find("select * from vehicle");
         List<Poi> Pois = Poi.dao.find("select * from poi");
-        setAttr("pois", Pois);
+        renderJson("pois", Pois);
         while(true)
         {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             for(int i = 0; i < 4; i++) GoodsController.createGoods(current_time);
             for(Vehicle vehicle:vehicles) {
                 VehicleController.calculateVehicleStatus(vehicle, step_time, current_time);
@@ -55,7 +60,7 @@ public class MainController extends Controller{
                     //setAttr("currentY", currentY);
                 }
             }
-            setAttr("vehicles", vehicles);
+            renderJson("vehicles", vehicles);
         }
 
     }
