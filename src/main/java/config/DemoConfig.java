@@ -25,6 +25,8 @@ public class DemoConfig extends JFinalConfig {
     @Override
     public void configRoute(Routes routes) {
         routes.add("/", MainController.class);
+        routes.add("/MainController/getAjaxData", MainController.class, "getAjaxData");
+        routes.add("/MainController/getAjaxData2", MainController.class, "getAjaxData2");
     }
 
     @Override

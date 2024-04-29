@@ -20,7 +20,9 @@ public class GoodsController {
         id++;
         goods.set("id", id);
         goods.set("name", "goods" + id);
-        goods.set("price", randomPrice());
+        goods.set("weight", 100 + Math.random() * 200);
+        goods.set("is_delivered", false);
+        goods.set("value", randomPrice());
         int st = randomPoi();
         int ed = randomPoi();
         while(st == ed) {
